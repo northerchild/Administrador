@@ -9,6 +9,9 @@
       <li><a href="https://twitter.com/vuejs" target="_blank">Contacto</a></li>
     </ul>
     <home></home>
+    <libros></libros>
+    <libro></libro>
+    <contacto></contacto>
   </div>
 </template>
 
