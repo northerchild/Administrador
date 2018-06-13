@@ -3,10 +3,10 @@
     <img src="./assets/logo.png">
     <h2>{{msg}}</h2>
     <ul>
-      <li><a href="https://vuejs.org" target="_blank">Home</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Libros</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Libros ID</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Contacto</a></li>
+      <li><router-link to="/home">Home</router-link></li>
+      <li><router-link to="/libro-list">Lista De libros</router-link></li>
+      <li><router-link :to="{name:'libro-id', params: {id: 16}}">Libros ID</router-link></li>
+      <li><router-link to="/contacto">Contactos</router-link></li>
     </ul>
     <router-view></router-view>
     <!--<home></home>

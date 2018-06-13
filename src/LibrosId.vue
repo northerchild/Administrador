@@ -1,12 +1,16 @@
 <template>
-	<h2>{{texto}}</h2>
+	<h2>{{texto}} : {{id_libro}}</h2>
 </template>
 <script>
 export default {
   name: 'home',
+  mounted(){
+  	this.id_libro = this.$route.params.id;
+  },
   data () {
     return {
-      texto: 'libro ID'
+      texto: 'Libro ID',
+      id_libro: null
     }
   }
 }
