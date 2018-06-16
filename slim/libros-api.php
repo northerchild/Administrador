@@ -4,11 +4,11 @@ require_once 'vendor/autoload.php';
 
 $app = new \Slim\Slim();
 
-$db = new mysqli("localhost", "root", "", "webapp");
+$db = new mysqli("localhost", "root", "", "librosu");
 
-$app->get("/restaurantes", function() use($db, $app) {
+$app->get("/libros", function() use($db, $app) {
 	// sleep(3);
-	$query = $db->query("SELECT * FROM restaurantes ORDER BY id DESC;");
+	$query = $db->query("SELECT * FROM libros ORDER BY id DESC;");
 	$restaurantes = array();
 	while ($fila = $query->fetch_assoc()) {
 		$restaurantes[] = $fila;
@@ -20,9 +20,9 @@ $app->get("/restaurantes", function() use($db, $app) {
 	echo json_encode($result);
 });
 
-$app->get("/restaurante/:id", function($id) use($db, $app) {
+$app->get("/libro/:id", function($id) use($db, $app) {
 	// sleep(3);
-	$query = $db->query("SELECT * FROM restaurantes WHERE id = $id;");
+	$query = $db->query("SELECT * FROM libros WHERE id = $id;");
 	$restaurante = $query->fetch_assoc();
 
 	if ($query->num_rows == 1) {
@@ -39,7 +39,7 @@ $app->get("/restaurante/:id", function($id) use($db, $app) {
 
 $app->get("/random-restaurante", function() use($db, $app) {
 	// sleep(3);
-	$query = $db->query("SELECT * FROM restaurantes ORDER BY RAND() LIMIT 1;");
+	$query = $db->query("SELECT * FROM libros ORDER BY RAND() LIMIT 1;");
 	$restaurante = $query->fetch_assoc();
 
 	if ($query->num_rows == 1) {
@@ -68,7 +68,7 @@ $app->post("/restaurantes", function() use($db, $app) {
 			. "'{$data["precio"]}'"
 			. ")";
 	*/
-	 $query = "INSERT INTO restaurantes VALUES(NULL,"
+	 $query = "INSERT INTO libros VALUES(NULL,"
 	  . "'{$app->request->post("nombre")}',"
 	  . "'{$app->request->post("direccion")}',"
 	  . "'{$app->request->post("descripcion")}',"
@@ -80,9 +80,9 @@ $app->post("/restaurantes", function() use($db, $app) {
 
 	if ($insert) {
 		$result = array("status" => "success",
-			"message" => "Restaurante creado correctamente!!!");
+			"message" => "Libro creado correctamente!!!");
 	} else {
-		$result = array("status" => "error", "message" => "Restaurante NO SE HA creado!!!");
+		$result = array("status" => "error", "message" => "Libro NO SE HA creado!!!");
 	}
 
 	echo json_encode($result);
@@ -93,7 +93,7 @@ $app->post("/update-restaurante/:id", function($id) use($db, $app) {
 	$json = $app->request->post("json");
 	$data = json_decode($json, true);
 
-	$query = "UPDATE restaurantes SET "
+	$query = "UPDATE libros SET "
 			. "nombre = '{$data["nombre"]}', "
 			. "direccion = '{$data["direccion"]}', "
 			. "descripcion = '{$data["descripcion"]}', "
@@ -103,22 +103,22 @@ $app->post("/update-restaurante/:id", function($id) use($db, $app) {
 	$update = $db->query($query);
 
 	if ($update) {
-		$result = array("status" => "success", "message" => "El restaurante se ha actualizado correctamente!!!");
+		$result = array("status" => "success", "message" => "El libro se ha actualizado correctamente!!!");
 	} else {
-		$result = array("status" => "error", "message" => "El restaurante NO SE HA actualizado!!!");
+		$result = array("status" => "error", "message" => "El libro NO SE HA actualizado!!!");
 	}
 
 	echo json_encode($result);
 });
 
 $app->get("/delete-restaurante/:id", function($id) use($db, $app) {
-	$query = "DELETE FROM restaurantes WHERE id = {$id}";
+	$query = "DELETE FROM libros WHERE id = {$id}";
 	$delete = $db->query($query);
 
 	if ($delete) {
-		$result = array("status" => "success", "message" => "El restaurante se ha borrado correctamente!!!");
+		$result = array("status" => "success", "message" => "El libro se ha borrado correctamente!!!");
 	} else {
-		$result = array("status" => "error", "message" => "El restaurante NO SE HA borrado!!!");
+		$result = array("status" => "error", "message" => "El libro NO SE HA borrado!!!");
 	}
 
 	echo json_encode($result);
