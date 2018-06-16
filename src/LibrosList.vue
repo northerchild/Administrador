@@ -2,7 +2,13 @@
 	<div>
 		<h2>{{texto}}</h2>
 		<ul id="libros-list" v-if="libros != null">
-			<li v-for="libro in libros"><strong>{{libro.nombre}}</strong></li>
+			<li v-for="libro in libros">
+				<strong>{{libro.nombre}}</strong>
+				<p>
+					<router-link :to="{name:'libro', params:{id: libro.id}}">Ver</router-link>
+					<router-link :to="{name:'libro', params:{id: libro.id}}">Editar</router-link>
+				</p>
+			</li>
 		</ul>	
 			<span v-else>Cargando...</span>
 	</div>

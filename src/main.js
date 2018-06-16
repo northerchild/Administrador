@@ -5,6 +5,7 @@ import Home from './Home.vue'
 import ListaLibros from './LibrosList.vue'
 import LibrosId from './LibrosId.vue'
 import Contactos from './Contactos.vue'
+import Libro from './libro.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -12,6 +13,8 @@ const routes = [
 	{path: '/home', component: Home},
 	{path: '/libro-list', component: ListaLibros},
 	{path: '/libro-id/:id', name:'libro-id', component: LibrosId},
+	{path: '/libro/:id', name:'libro', component: Libro},
+	{path: '/editar-libro/:id', name:'editar-libro-id', component: LibrosId},
 	{path: '/contacto', component: Contactos}
 ];
 
