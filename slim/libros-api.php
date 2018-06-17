@@ -37,7 +37,7 @@ $app->get("/libro/:id", function($id) use($db, $app) {
 	echo json_encode($result);
 });
 
-$app->get("/random-restaurante", function() use($db, $app) {
+$app->get("/random-libro", function() use($db, $app) {
 	// sleep(3);
 	$query = $db->query("SELECT * FROM libros ORDER BY RAND() LIMIT 1;");
 	$restaurante = $query->fetch_assoc();
@@ -48,14 +48,14 @@ $app->get("/random-restaurante", function() use($db, $app) {
 	} else {
 		$result = array(
 			"status" => "error",
-			"message" => "El restaurante no existe");
+			"message" => "El libro no existe");
 	}
 
 	echo json_encode($result);
 });
 
 
-$app->post("/restaurantes", function() use($db, $app) {
+$app->post("/libros", function() use($db, $app) {
 
 	$json = $app->request->post("json");
 	$data = json_decode($json, true);
@@ -70,10 +70,9 @@ $app->post("/restaurantes", function() use($db, $app) {
 	*/
 	 $query = "INSERT INTO libros VALUES(NULL,"
 	  . "'{$app->request->post("nombre")}',"
-	  . "'{$app->request->post("direccion")}',"
 	  . "'{$app->request->post("descripcion")}',"
 	  . "NULL, "
-	  . "'{$app->request->post("precio")}'"
+	  . "'{$app->request->post("carrera")}'"
 	  . ")";
 	 
 	$insert = $db->query($query);
@@ -88,7 +87,7 @@ $app->post("/restaurantes", function() use($db, $app) {
 	echo json_encode($result);
 });
 
-$app->post("/update-restaurante/:id", function($id) use($db, $app) {
+$app->post("/update-libro/:id", function($id) use($db, $app) {
 	header("Access-Control-Allow-Origin: *");
 	$json = $app->request->post("json");
 	$data = json_decode($json, true);
@@ -111,7 +110,7 @@ $app->post("/update-restaurante/:id", function($id) use($db, $app) {
 	echo json_encode($result);
 });
 
-$app->get("/delete-restaurante/:id", function($id) use($db, $app) {
+$app->get("/delete-libro/:id", function($id) use($db, $app) {
 	$query = "DELETE FROM libros WHERE id = {$id}";
 	$delete = $db->query($query);
 
