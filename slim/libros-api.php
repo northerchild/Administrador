@@ -94,9 +94,8 @@ $app->post("/update-libro/:id", function($id) use($db, $app) {
 
 	$query = "UPDATE libros SET "
 			. "nombre = '{$data["nombre"]}', "
-			. "direccion = '{$data["direccion"]}', "
 			. "descripcion = '{$data["descripcion"]}', "
-			. "precio = '{$data["precio"]}', "
+			. "carrera = '{$data["carrera"]}', "
 			. "imagen = '{$data["imagen"]}' "
 			. " WHERE id={$id}";
 	$update = $db->query($query);

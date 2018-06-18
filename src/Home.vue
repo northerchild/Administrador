@@ -6,7 +6,7 @@ export default {
   name: 'home',
   data () {
     return {
-      texto: 'Pagina Home'
+      texto: 'Bienvenido Modulo De Administración'
     }
   }
 }

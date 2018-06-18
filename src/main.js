@@ -7,6 +7,7 @@ import LibrosId from './LibrosId.vue'
 import Contactos from './Contactos.vue'
 import Libro from './libro.vue'
 import LibroAdd from './LibroAdd.vue'
+import LibroEdit from './LibroEdit.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -17,6 +18,7 @@ const routes = [
 	{path: '/libro/:id', name:'libro', component: Libro},
 	{path: '/editar-libro/:id', name:'editar-libro-id', component: LibrosId},
 	{path: '/crear-libro/:id', name:'crear-libro', component: LibroAdd},
+	{path: '/editar-libro/:id', name:'libro-edit', component: LibroEdit},
 	{path: '/contacto', component: Contactos}
 ];
 

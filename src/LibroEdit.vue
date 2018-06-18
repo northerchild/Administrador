@@ -28,10 +28,15 @@
 	export default{
 		name:'libro-add',
 		mounted(){
-
+			this.id = this.$route.params.id
+			axios.get('http://localhost:8081/VueAdministrator/vue_administrador/slim/libros-api.php/libro/' + this.id)
+				 .then((respuesta)=>{
+				 	this.libro = respuesta.data.data
+				 })
 		},
 		data(){
 			return {
+				id: null,
 				libro:{
 					nombre:'',
 					descripcion:'',
@@ -44,11 +49,12 @@
 				console.log(this.libro)
 				let router = this.$router;
 				let params = 'json='+JSON.stringify(this.libro)
-				axios.post('http://localhost:8081/VueAdministrator/vue_administrador/slim/libros-api.php/libros', params)
+				let id = this.id;
+				axios.post('http://localhost:8081/VueAdministrator/vue_administrador/slim/libros-api.php/update-libro/'+id,params)
 					 .then((respuesta)=>{
 					 	if(respuesta.data.status == 'success'){
 				     		// redirigir
-				     		router.push('/libro-list');
+				     		router.push('/libro/'+id);
 					 		console.log(respuesta)
 				     	}
 					 })

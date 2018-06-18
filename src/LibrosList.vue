@@ -6,7 +6,7 @@
 				<strong>{{libro.nombre}}</strong>
 				<p>
 					<router-link :to="{name:'libro', params:{id: libro.id}}">Ver</router-link>
-					<router-link :to="{name:'libro', params:{id: libro.id}}">Editar</router-link>
+					<router-link :to="{name:'libro-edit', params:{id: libro.id}}">Editar</router-link>
 				</p>
 			</li>
 		</ul>	

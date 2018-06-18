@@ -5,9 +5,8 @@
     <ul>
       <li><router-link to="/home">Home</router-link></li>
       <li><router-link to="/libro-list">Lista De libros</router-link></li>
-      <li><router-link :to="{name:'libro-id', params: {id: 16}}">Libros ID</router-link></li>
+      <li><router-link :to="{name:'libro', params: {id: 16}}">Libros ID</router-link></li>
       <li><router-link :to="{name:'crear-libro'}">Crear Libro</router-link></li>
-      <li><router-link to="/contacto">Contactos</router-link></li>
     </ul>
     <hr>
     <router-view></router-view>
