@@ -7,6 +7,14 @@
 				<p>
 					<router-link :to="{name:'libro', params:{id: libro.id}}">Ver</router-link>
 					<router-link :to="{name:'libro-edit', params:{id: libro.id}}">Editar</router-link>
+          <span v-if="showBorrar != libro.id">
+            <a @click="borrarLibro(libro.id)">Eliminar</a>
+          </span>
+          <span v-else>
+            <p>¿Estas seguro de borrar el libro?</p>
+            <button @click="cancelarBorrado()">Cancelar</button>
+            <button @click="confirmarBorrado(libro.id)">Borrar</button>
+          </span>
 				</p>
 			</li>
 		</ul>	
@@ -23,7 +31,8 @@ export default {
   data () {
     return {
       texto: 'Lista de libros',
-      libros: null
+      libros: null,
+      showBorrar: null
     }
   },
   methods:{
@@ -32,7 +41,20 @@ export default {
   			 .then((respuesta)=>{
   			 	this.libros = respuesta.data.data
   			 })
-  	}
+  	},
+    borrarLibro(id){
+      this.showBorrar = id
+    },
+    cancelarBorrado(){
+      this.showBorrar = null
+    },
+    confirmarBorrado(id){
+      axios.get('http://localhost:8081/VueAdministrator/vue_administrador/slim/libros-api.php/delete-libro/'+id)
+           .then((respuesta)=>{
+              this.borrarLibro = null
+              this.getLibros()
+           })
+    }
   }
 }
 </script>
@@ -44,6 +66,7 @@ export default {
             margin-top: 10px;
             width: 30%;
             height: 120px;
+            padding: 20px;
             border: 1px solid #ddd;
             background: #eee;
             overflow: hidden;
