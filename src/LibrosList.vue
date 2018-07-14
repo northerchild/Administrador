@@ -13,7 +13,7 @@
           <span v-else>
             <p>¿Estas seguro de borrar el libro?</p>
             <button @click="cancelarBorrado()" class="borrar">Cancelar </button>
-            <button @click="confirmarBorrado(libro.id)">Borrar</button>
+            <button @click="confirmarBorrado(libro.id)" class="eliminar">Borrar</button>
           </span>
 				</p>
 			</li>
@@ -93,6 +93,33 @@ export default {
                 text-decoration: underline;
               }
             }
+          }
+          button.borrar,button.eliminar{
+            border-radius:15px;
+            cursor:pointer;
+            color:#f2f2f2;
+            border:none;
+            transition: all 0.6s ease;
+            font-size: 18px;
+            &:hover{
+                text-decoration: underline;
+              }
+          }
+          button.borrar{
+            background: #e8910d;
+            border: 1px solid #e8910d;
+            &:hover{
+                background:#bf790d;
+                color:#fff;
+              }
+          }
+          button.eliminar{
+            background: #ed5650;
+            border: 1px solid #ed5650;
+            &:hover{
+                background:#d62b24;
+                color:#fff;
+              }
           }
       }
 </style>
