@@ -12,7 +12,7 @@
           </span>
           <span v-else>
             <p>¿Estas seguro de borrar el libro?</p>
-            <button @click="cancelarBorrado()">Cancelar</button>
+            <button @click="cancelarBorrado()" class="borrar">Cancelar </button>
             <button @click="confirmarBorrado(libro.id)">Borrar</button>
           </span>
 				</p>
@@ -46,12 +46,14 @@ export default {
       this.showBorrar = id
     },
     cancelarBorrado(){
-      this.showBorrar = null
+      this.showBorrar = null,
+      this.showBorrar = swal("Libro no borrado!")
     },
     confirmarBorrado(id){
       axios.get('http://localhost:8081/VueAdministrator/vue_administrador/slim/libros-api.php/delete-libro/'+id)
            .then((respuesta)=>{
               this.borrarLibro = null
+              this.showBorrar = swal("libro"+id, "Borrado!", "success");
               this.getLibros()
            })
     }

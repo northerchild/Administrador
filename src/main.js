@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import SweetAlert from 'sweetalert/dist/sweetalert.min.js'
 import App from './App.vue'
 import Home from './Home.vue'
 import ListaLibros from './LibrosList.vue'
